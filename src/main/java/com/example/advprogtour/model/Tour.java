@@ -1,9 +1,10 @@
 package com.example.advprogtour.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.couchbase.core.mapping.Document;
 
-@Document
+import javax.persistence.Entity;
+
+@Entity
 public class Tour {
     @Id
     private String id;
