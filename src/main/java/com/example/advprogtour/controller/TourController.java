@@ -75,7 +75,7 @@ public class TourController {
     }
 
     @DeleteMapping("/tours/{tourCode}")
-    public ResponseEntity deleteTour(@PathVariable String tourCode){
+    public ResponseEntity<Tour> deleteTour(@PathVariable String tourCode){
         Tour tour = tourRepository.findTourByTourCode(tourCode);
         if (tour != null){
             tourRepository.delete(tour);
