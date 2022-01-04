@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -38,7 +39,7 @@ public class TourController {
     @GetMapping("/tours/top")
     public List<Tour> getTopTours(){
         List<Tour> tours = tourRepository.findAllByOrderByScoreDesc();
-        List<Tour> top = null;
+        List<Tour> top = new java.util.ArrayList<>(Collections.emptyList());
         top.add(tours.get(0));
         top.add(tours.get(1));
         top.add(tours.get(2));

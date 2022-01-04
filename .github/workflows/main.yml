@@ -5,7 +5,7 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Java 11 Monument container
+    name: Java 11 Tour container
     steps:
       - name: Check out repository
         uses: actions/checkout@v1
