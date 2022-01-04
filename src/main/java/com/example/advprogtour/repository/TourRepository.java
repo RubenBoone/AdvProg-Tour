@@ -1,7 +1,12 @@
 package com.example.advprogtour.repository;
 
 import com.example.advprogtour.model.Tour;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface TourRepository extends JpaRepository<Tour, Integer> {
+import java.util.List;
+
+public interface TourRepository extends MongoRepository<Tour, String> {
+    Tour findTourByTourCode(String tourCode);
+    List<Tour> findAllByOrderByScoreDesc();
+    List<Tour> findAllByEntryFeeIsLessThanEqual(double entryFee);
 }

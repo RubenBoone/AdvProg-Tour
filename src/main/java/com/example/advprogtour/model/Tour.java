@@ -1,10 +1,9 @@
 package com.example.advprogtour.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-
-@Entity
+@Document(collection = "tours")
 public class Tour {
     @Id
     private String id;
@@ -15,11 +14,12 @@ public class Tour {
     private String title;
     private String description;
     private int avgCustomer;
+    private double score;
 
     public Tour() {
     }
 
-    public Tour(String id, String monuCode, String tourCode, double tourTime, double entryFee, String title, String description, int avgCustomer) {
+    public Tour(String id, String monuCode, String tourCode, double tourTime, double entryFee, String title, String description, int avgCustomer, double score) {
         this.id = id;
         this.monuCode = monuCode;
         this.tourCode = tourCode;
@@ -28,6 +28,7 @@ public class Tour {
         this.title = title;
         this.description = description;
         this.avgCustomer = avgCustomer;
+        this.score = score;
     }
 
     public String getId() {
@@ -92,5 +93,13 @@ public class Tour {
 
     public void setAvgCustomer(int avgCustomer) {
         this.avgCustomer = avgCustomer;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }
