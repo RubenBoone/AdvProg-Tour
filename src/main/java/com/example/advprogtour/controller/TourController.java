@@ -3,9 +3,8 @@ package com.example.advprogtour.controller;
 import com.example.advprogtour.model.Tour;
 import com.example.advprogtour.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -50,6 +49,39 @@ public class TourController {
     @GetMapping("/tours/price/{entryFee}")
     public List<Tour> getToursBelowPrice(@PathVariable double entryFee){
         return tourRepository.findAllByEntryFeeIsLessThanEqual(entryFee);
+    }
+
+
+    @PostMapping("/tours")
+    public Tour addTour(@RequestBody Tour tour){
+        tourRepository.save(tour);
+        return tour;
+    }
+
+    @PutMapping("/tours")
+    public Tour updateTour(@RequestBody Tour updatedTour){
+        Tour retrievedTour = tourRepository.findTourByTourCode(updatedTour.getMonuCode());
+
+        retrievedTour.setMonuCode(updatedTour.getMonuCode());
+        retrievedTour.setTourTime(updatedTour.getTourTime());
+        retrievedTour.setAvgCustomer(updatedTour.getAvgCustomer());
+        retrievedTour.setScore(updatedTour.getScore());
+        retrievedTour.setDescription(updatedTour.getDescription());
+        retrievedTour.setEntryFee(updatedTour.getEntryFee());
+        retrievedTour.setTitle(updatedTour.getTitle());
+
+        return retrievedTour;
+    }
+
+    @DeleteMapping("/tours/{tourCode}")
+    public ResponseEntity deleteTour(@PathVariable String tourCode){
+        Tour tour = tourRepository.findTourByTourCode(tourCode);
+        if (tour != null){
+            tourRepository.delete(tour);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
