@@ -21,9 +21,6 @@ public class TourController {
             tourRepository.save(new Tour("1", "BE19580318", "BET001", 2.5, 20, "DinnerTour", "Full tour with dinner at the end", 1000, 4));
             tourRepository.save(new Tour("2", "BE19580318", "BET002", 1.5, 15.50, "Tour", "Full tour", 2500, 3.5));
             tourRepository.save(new Tour("3", "FR18890331", "FRT001", 1.5, 25.10, "Guided", "Full tour with guide", 2000, 3.8));
-
-
-            System.out.println("Tour test: " + tourRepository.findTourByTourCode("BET001").getTitle());
         }
     }
 
@@ -61,7 +58,7 @@ public class TourController {
 
     @PutMapping("/tours")
     public Tour updateTour(@RequestBody Tour updatedTour){
-        Tour retrievedTour = tourRepository.findTourByTourCode(updatedTour.getMonuCode());
+        Tour retrievedTour = tourRepository.findTourByTourCode(updatedTour.getTourCode());
 
         retrievedTour.setMonuCode(updatedTour.getMonuCode());
         retrievedTour.setTourTime(updatedTour.getTourTime());
