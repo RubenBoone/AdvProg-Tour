@@ -67,6 +67,9 @@ public class TourController {
         retrievedTour.setDescription(updatedTour.getDescription());
         retrievedTour.setEntryFee(updatedTour.getEntryFee());
         retrievedTour.setTitle(updatedTour.getTitle());
+        retrievedTour.setScore(updatedTour.getScore());
+
+        tourRepository.save(retrievedTour);
 
         return retrievedTour;
     }
