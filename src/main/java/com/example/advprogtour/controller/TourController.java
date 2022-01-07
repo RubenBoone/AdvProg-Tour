@@ -31,6 +31,12 @@ public class TourController {
         return tourRepository.findAll();
     }
 
+    // Get Tour with tourCode
+    @GetMapping("/tours/{tourCode}")
+    public Tour getAllTours(@PathVariable String tourCode){
+        return tourRepository.findTourByTourCode(tourCode);
+    }
+
     // Get top 3 tours based on score.
     @GetMapping("/tours/top")
     public List<Tour> getTopTours(){
